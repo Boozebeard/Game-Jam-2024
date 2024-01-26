@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuqhmwblpsiji"]
+
+[ext_resource type="Texture2D" uid="uid://bt0xg2ewkfgld" path="res://assets/temp ground.png" id="1_qtj4v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xp72p"]
+size = Vector2(1347.54, 644)
+
+[node name="Hill" type="Node2D"]
+
+[node name="Hill" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Hill"]
+texture = ExtResource("1_qtj4v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hill"]
+position = Vector2(-186, 500)
+rotation = 0.497419
+shape = SubResource("RectangleShape2D_xp72p")
