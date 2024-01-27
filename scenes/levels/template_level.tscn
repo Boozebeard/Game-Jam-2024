@@ -1,21 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2p66nyv717hy"]
+[gd_scene load_steps=7 format=3 uid="uid://d2p66nyv717hy"]
 
-[ext_resource type="PackedScene" uid="uid://cuqhmwblpsiji" path="res://scenes/environment/hill.tscn" id="1_ei27e"]
 [ext_resource type="Script" path="res://scenes/levels/template_level.gd" id="1_k7wv1"]
+[ext_resource type="Texture2D" uid="uid://cxsa8qtu3yhqh" path="res://assets/temp cow.png" id="2_3whc4"]
 [ext_resource type="PackedScene" uid="uid://d1h7bfg2nhldj" path="res://scenes/players/cow.tscn" id="2_6h0pe"]
+[ext_resource type="Script" path="res://scenes/levels/Polygon2D.gd" id="3_xsbxc"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="4_fne4b"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_dari2"]
 
 [node name="TemplateLevel" type="Node2D"]
 script = ExtResource("1_k7wv1")
 
 [node name="Ground" type="Node2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="Ground"]
+[node name="Polygon2D" type="Polygon2D" parent="Ground"]
+texture_repeat = 2
+texture = ExtResource("2_3whc4")
+texture_scale = Vector2(0.025, 0.025)
+polygon = PackedVector2Array(-2420, -966, 11849, 10707, 17720, 10937, 20856, 20505, 28408, 20601, 29528, 12665, 43736, 19577, 69247, 26904, 68848, 45662, -3394, 45776)
+script = ExtResource("3_xsbxc")
 
-[node name="Hill" parent="." instance=ExtResource("1_ei27e")]
-position = Vector2(-111, -99)
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Polygon2D"]
 
 [node name="Obstacles" type="Node2D" parent="."]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_6h0pe")]
-position = Vector2(-493, -208)
-scale = Vector2(0.3, 0.3)
+position = Vector2(-1199, -601)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(801, -101)
+zoom = Vector2(0.05, 0.05)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("5_dari2")
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(801, -101)
+script = ExtResource("4_fne4b")
+priority_override = false
+priority = 0
+zoom = Vector2(0.05, 0.05)
+follow_mode = 2
+follow_target = NodePath("../Player")
+follow_parameters/target_offset = Vector2(2000, 500)
+follow_parameters/damping = false
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = false
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
