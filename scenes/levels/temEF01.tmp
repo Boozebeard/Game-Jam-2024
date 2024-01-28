@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2p66nyv717hy"]
+
+[ext_resource type="Script" path="res://scenes/levels/template_level.gd" id="1_k7wv1"]
+[ext_resource type="PackedScene" uid="uid://d1h7bfg2nhldj" path="res://scenes/players/cow.tscn" id="2_6h0pe"]
+[ext_resource type="Script" path="res://scenes/levels/Polygon2D.gd" id="3_xsbxc"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="4_fne4b"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_dari2"]
+
+[sub_resource type="Gradient" id="Gradient_3qech"]
+colors = PackedColorArray(0.792157, 1, 1, 1, 0.450827, 0.625868, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yd2jd"]
+gradient = SubResource("Gradient_3qech")
+width = 1024
+
+[node name="TemplateLevel" type="Node2D"]
+script = ExtResource("1_k7wv1")
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="background"]
+position = Vector2(323, -867)
+texture = SubResource("GradientTexture1D_yd2jd")
+texture_scale = Vector2(-0.024, -0.024)
+texture_rotation = 1.5708
+polygon = PackedVector2Array(-11390, -26381, -12670, 60531, 112770, 59379, 112642, -26125)
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground"]
+texture_repeat = 2
+color = Color(0.509804, 0.670588, 0.45098, 1)
+texture_scale = Vector2(0.025, 0.025)
+polygon = PackedVector2Array(-3371, -1503, 460, 630, 1466, 900, 2669, 1088, 4052, 1026, 4986, 1259, 9291, 4471, 10190, 4651, 11989, 4683, 12600, 5010, 13183, 5598, 16392, 6533, 21640, 7077, 24168, 9701, 29279, 9792, 34872, 14397, 43736, 19577, 54006, 20099, 101878, 27934, 101878, 46770, -3394, 45776)
+script = ExtResource("3_xsbxc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Polygon2D"]
+
+[node name="Obstacles" type="Node2D" parent="."]
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("2_6h0pe")]
+position = Vector2(-1199, -601)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1301, 399)
+zoom = Vector2(0.2, 0.2)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("5_dari2")
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(1301, 399)
+script = ExtResource("4_fne4b")
+priority_override = false
+priority = 0
+zoom = Vector2(0.2, 0.2)
+follow_mode = 2
+follow_target = NodePath("../Player")
+follow_parameters/target_offset = Vector2(2500, 1000)
+follow_parameters/damping = false
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = false
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = null
+tween_on_load = false
+inactive_update_mode = 0

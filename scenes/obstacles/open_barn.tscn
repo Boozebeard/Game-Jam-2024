@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://rdn4mtnial6h"]
+
+[ext_resource type="PackedScene" uid="uid://bq6f3prvnbiky" path="res://scenes/obstacles/obstacle.tscn" id="1_6tof0"]
+[ext_resource type="Texture2D" uid="uid://i06cq3wonaaj" path="res://assets/Art for Roller Derby/house2 ENDING.png" id="2_517fs"]
+
+[node name="OpenBarn" instance=ExtResource("1_6tof0")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_517fs")
+
+[node name="CollisionPolygon2D" parent="." index="2"]
+polygon = PackedVector2Array(-641, 426, -655, 54, -740, 63, -740, -750, 212, -1437, 1007, -750, 993, 31, 818, 31, 782, 1369, 544, 1374, 540, 386)

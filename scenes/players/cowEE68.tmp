@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1h7bfg2nhldj"]
+
+[ext_resource type="Texture2D" uid="uid://cxsa8qtu3yhqh" path="res://assets/temp cow.png" id="1_8bdti"]
+[ext_resource type="Script" path="res://scenes/players/cow.gd" id="1_cpit6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hubn6"]
+bounce = 0.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oe3q3"]
+radius = 207.697
+
+[node name="player" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_hubn6")
+gravity_scale = 0.5
+script = ExtResource("1_cpit6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8bdti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oe3q3")

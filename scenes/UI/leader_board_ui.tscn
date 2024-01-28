@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://0fh51solgy8j"]
+
+[ext_resource type="Script" path="res://scenes/UI/leader_board_ui.gd" id="1_j2jdi"]
+[ext_resource type="Theme" uid="uid://dekcdj2qwjulm" path="res://scenes/UI/main_theme.tres" id="2_bbvmy"]
+
+[node name="LeaderBoardUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_j2jdi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 111.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2_bbvmy")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 200
+text = "Fastest Time"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_bbvmy")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 200
+text = "test"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "test 2"
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "test 3"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_bbvmy")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "
+Press R to restart"

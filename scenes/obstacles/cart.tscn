@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://u6us21n31s27"]
+
+[ext_resource type="PackedScene" uid="uid://bq6f3prvnbiky" path="res://scenes/obstacles/obstacle.tscn" id="1_0lrkp"]
+[ext_resource type="Texture2D" uid="uid://bijrcnv1kfuvy" path="res://assets/Art for Roller Derby/wheelbarrow.png" id="2_ciyov"]
+
+[node name="Cart" instance=ExtResource("1_0lrkp")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ciyov")
+
+[node name="CollisionPolygon2D" parent="." index="2"]
+polygon = PackedVector2Array(-1000, -215, -530, 412, 520, 319, 964, -295, 1071, -301, 1071, -451, 663, -376, 127, -313, -461, -265)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://4ocewacwnkmp"]
+
+[ext_resource type="Texture2D" uid="uid://c8ntehcrsaty6" path="res://assets/Art for Roller Derby/signpost2.png" id="1_kxugq"]
+[ext_resource type="Theme" uid="uid://dekcdj2qwjulm" path="res://scenes/UI/main_theme.tres" id="2_q0k0x"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_kxugq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -855.0
+offset_top = -655.0
+offset_right = 894.0
+offset_bottom = 87.0
+rotation = -0.0102017
+theme = ExtResource("2_q0k0x")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.352941, 0.184314, 0, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 131
+text = "L Click to inflate
+R Click to deflate
+
+deflating propels you 
+relative to mouse position"
+horizontal_alignment = 1

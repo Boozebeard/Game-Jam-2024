@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4uc118o400m4"]
+
+[ext_resource type="Texture2D" uid="uid://la50osdy7niq" path="res://assets/Art for Roller Derby/signpost1.png" id="1_sdptr"]
+[ext_resource type="Theme" uid="uid://dekcdj2qwjulm" path="res://scenes/UI/main_theme.tres" id="2_6p8qu"]
+
+[node name="Sign02" type="Sprite2D"]
+texture = ExtResource("1_sdptr")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -1049.0
+offset_top = -428.0
+offset_right = 1051.0
+offset_bottom = 79.0
+rotation = -0.044804
+theme = ExtResource("2_6p8qu")
+theme_override_colors/font_shadow_color = Color(0.356863, 0.192157, 0.105882, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 150
+text = "inflate to 
+float on the
+wind"
+horizontal_alignment = 1

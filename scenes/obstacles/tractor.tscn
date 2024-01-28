@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bquqkwemvwrwn"]
+
+[ext_resource type="PackedScene" uid="uid://bq6f3prvnbiky" path="res://scenes/obstacles/obstacle.tscn" id="1_wb51u"]
+[ext_resource type="Texture2D" uid="uid://ulvm664a2y0f" path="res://assets/Art for Roller Derby/tractor.png" id="2_1cmow"]
+
+[node name="Tractor" instance=ExtResource("1_wb51u")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_1cmow")
+
+[node name="CollisionPolygon2D" parent="." index="2"]
+polygon = PackedVector2Array(-1059, 691, -859, -149, -255, -229, 17, -1013, 833, -1029, 1101, 623)

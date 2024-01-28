@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ded4f0a3omdds"]
+
+[ext_resource type="FontFile" uid="uid://prdwvshe6w57" path="res://assets/5yearsoldfont.medium.ttf" id="1_0srj5"]
+[ext_resource type="Script" path="res://StopWatch.gd" id="1_yncvw"]
+
+[sub_resource type="Theme" id="Theme_soxf0"]
+default_font = ExtResource("1_0srj5")
+
+[node name="StopWatch" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = SubResource("Theme_soxf0")
+theme_override_font_sizes/font_size = 200
+text = "stop watch"
+script = ExtResource("1_yncvw")

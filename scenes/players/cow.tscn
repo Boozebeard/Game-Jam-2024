@@ -1,20 +1,107 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1h7bfg2nhldj"]
+[gd_scene load_steps=14 format=3 uid="uid://d1h7bfg2nhldj"]
 
-[ext_resource type="Texture2D" uid="uid://cxsa8qtu3yhqh" path="res://assets/temp cow.png" id="1_8bdti"]
 [ext_resource type="Script" path="res://scenes/players/cow.gd" id="1_cpit6"]
+[ext_resource type="Texture2D" uid="uid://c1ghcqqb504bi" path="res://assets/Art for Roller Derby/body2.png" id="2_v86ym"]
+[ext_resource type="Texture2D" uid="uid://bke76brtne0ou" path="res://assets/Art for Roller Derby/head1.png" id="3_2cu0x"]
+[ext_resource type="Texture2D" uid="uid://crdamlm8o3xv" path="res://assets/Art for Roller Derby/head2.png" id="4_qhtn6"]
+[ext_resource type="Texture2D" uid="uid://bdl5bfdrblnos" path="res://assets/Art for Roller Derby/head3.png" id="5_b6ord"]
+[ext_resource type="Texture2D" uid="uid://b8d7j4e2vo5m7" path="res://assets/Art for Roller Derby/particle1brighter.png" id="6_nn8gl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hubn6"]
-bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oe3q3"]
 radius = 207.697
 
-[node name="player" type="RigidBody2D"]
-physics_material_override = SubResource("PhysicsMaterial_hubn6")
-script = ExtResource("1_cpit6")
+[sub_resource type="Curve" id="Curve_df4xm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.893536, 0.836221), -1.68258, -1.68258, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8bdti")
+[sub_resource type="CurveTexture" id="CurveTexture_1rhot"]
+curve = SubResource("Curve_df4xm")
+
+[sub_resource type="Curve" id="Curve_s7h3l"]
+min_value = 0.1
+_data = [Vector2(0, 0.216929), 0.0, -0.0385486, 0, 0, Vector2(0.292776, 0.493307), 0.881059, 0.881059, 0, 0, Vector2(1, 0.871024), 0.0860265, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wys6l"]
+curve = SubResource("Curve_s7h3l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfvun"]
+particle_flag_disable_z = true
+angle_max = 60.0
+spread = 10.0
+initial_velocity_min = 2000.0
+initial_velocity_max = 2500.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_wys6l")
+color = Color(0.870588, 0.941176, 0.819608, 1)
+alpha_curve = SubResource("CurveTexture_1rhot")
+
+[node name="player" type="RigidBody2D"]
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_hubn6")
+gravity_scale = 5.0
+script = ExtResource("1_cpit6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oe3q3")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(21, -6)
+
+[node name="body" type="Sprite2D" parent="Node2D"]
+z_index = 1
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("2_v86ym")
+
+[node name="heads" type="Node2D" parent="Node2D"]
+top_level = true
+position = Vector2(-10, -1)
+
+[node name="head1" type="Sprite2D" parent="Node2D/heads"]
+visible = false
+z_index = 1
+position = Vector2(-13.41, 3.875)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_2cu0x")
+
+[node name="head2" type="Sprite2D" parent="Node2D/heads"]
+visible = false
+z_index = 1
+position = Vector2(-10, -1)
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("4_qhtn6")
+
+[node name="head3" type="Sprite2D" parent="Node2D/heads"]
+visible = false
+z_index = 1
+position = Vector2(-10, -1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_b6ord")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Node2D"]
+position = Vector2(-31, 5)
+scale = Vector2(0.245, 0.245)
+remote_path = NodePath("../heads")
+update_rotation = false
+update_scale = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../GPUParticles2D")
+update_rotation = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.0588235)
+top_level = true
+emitting = false
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_wfvun")
+texture = ExtResource("6_nn8gl")
+lifetime = 0.5
+speed_scale = 0.4
+trail_lifetime = 0.1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

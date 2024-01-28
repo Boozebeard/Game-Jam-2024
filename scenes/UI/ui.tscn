@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://wu637t43al6a"]
+
+[ext_resource type="PackedScene" uid="uid://ded4f0a3omdds" path="res://scenes/UI/stop_watch.tscn" id="1_lgdkl"]
+[ext_resource type="Theme" uid="uid://dekcdj2qwjulm" path="res://scenes/UI/main_theme.tres" id="2_23hp5"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="StopWatch" parent="MarginContainer" instance=ExtResource("1_lgdkl")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2_23hp5")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50

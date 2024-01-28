@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://birj7q7hy4iqm"]
+
+[ext_resource type="PackedScene" uid="uid://bq6f3prvnbiky" path="res://scenes/obstacles/obstacle.tscn" id="1_q8r4j"]
+[ext_resource type="Texture2D" uid="uid://btu3ulsm8sp5j" path="res://assets/Art for Roller Derby/hedge.png" id="2_2hnjp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8veh8"]
+size = Vector2(632, 1109)
+
+[node name="hedge" instance=ExtResource("1_q8r4j")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-33, 3)
+texture = ExtResource("2_2hnjp")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 14.5)
+shape = SubResource("RectangleShape2D_8veh8")

@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1h7bfg2nhldj"]
+
+[ext_resource type="Texture2D" uid="uid://cxsa8qtu3yhqh" path="res://assets/temp cow.png" id="1_8bdti"]
+[ext_resource type="Script" path="res://scenes/players/cow.gd" id="1_cpit6"]
+[ext_resource type="Texture2D" uid="uid://c4242ulaa0dxy" path="res://icon.svg" id="3_cyk2m"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hubn6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oe3q3"]
+radius = 207.697
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfvun"]
+particle_flag_disable_z = true
+spread = 25.0
+initial_velocity_min = 500.0
+initial_velocity_max = 700.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+
+[node name="player" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_hubn6")
+gravity_scale = 5.0
+script = ExtResource("1_cpit6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8bdti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oe3q3")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.0588235)
+emitting = false
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_wfvun")
+texture = ExtResource("3_cyk2m")
+lifetime = 10.0

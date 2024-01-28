@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://buqsf4rlnxoki"]
+
+[ext_resource type="PackedScene" uid="uid://bq6f3prvnbiky" path="res://scenes/obstacles/obstacle.tscn" id="1_ytaxo"]
+[ext_resource type="Texture2D" uid="uid://bol6sy0luwxj2" path="res://assets/Art for Roller Derby/rake.png" id="2_xi05r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xowtf"]
+size = Vector2(92, 1020)
+
+[node name="PitchFork" instance=ExtResource("1_ytaxo")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-33, 3)
+texture = ExtResource("2_xi05r")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_xowtf")

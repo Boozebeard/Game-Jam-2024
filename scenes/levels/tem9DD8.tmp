@@ -1,0 +1,349 @@
+[gd_scene load_steps=28 format=3 uid="uid://d2p66nyv717hy"]
+
+[ext_resource type="Script" path="res://scenes/levels/template_level.gd" id="1_k7wv1"]
+[ext_resource type="PackedScene" uid="uid://d1h7bfg2nhldj" path="res://scenes/players/cow.tscn" id="2_6h0pe"]
+[ext_resource type="Texture2D" uid="uid://cie437a0j3hn2" path="res://assets/Art for Roller Derby/sky seamless.jpg" id="2_b8nx2"]
+[ext_resource type="PackedScene" uid="uid://8gxrw4g6yw8o" path="res://scenes/obstacles/fence.tscn" id="2_vm6tp"]
+[ext_resource type="PackedScene" uid="uid://dn86vlq0ug8de" path="res://scenes/obstacles/barn.tscn" id="3_cnvhg"]
+[ext_resource type="Texture2D" uid="uid://1vrtbu2weiyh" path="res://assets/Art for Roller Derby/hill3.png" id="3_i8i51"]
+[ext_resource type="Texture2D" uid="uid://cnqhb7ykxvvq1" path="res://assets/Art for Roller Derby/grass texture foreground.png" id="3_wd78d"]
+[ext_resource type="Script" path="res://scenes/levels/Polygon2D.gd" id="3_xsbxc"]
+[ext_resource type="PackedScene" uid="uid://fg2glwiywwia" path="res://scenes/obstacles/slow_trap.tscn" id="4_006i7"]
+[ext_resource type="Texture2D" uid="uid://cfnv04c4cyevv" path="res://assets/Art for Roller Derby/cloud3.png" id="4_ejxpn"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="4_fne4b"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_dari2"]
+[ext_resource type="Texture2D" uid="uid://btd0f4iffkmp7" path="res://assets/Art for Roller Derby/cloud3 with smile.png" id="5_fh0iu"]
+[ext_resource type="Texture2D" uid="uid://85y2pbrs81y6" path="res://assets/Art for Roller Derby/cloud1.png" id="6_gs3lj"]
+[ext_resource type="PackedScene" uid="uid://csoricexmc0mc" path="res://scenes/obstacles/wind.tscn" id="11_wr7wq"]
+[ext_resource type="Texture2D" uid="uid://b6it7a56h4mev" path="res://assets/Art for Roller Derby/wind1.png" id="12_8asws"]
+[ext_resource type="PackedScene" uid="uid://birj7q7hy4iqm" path="res://scenes/obstacles/hedge.tscn" id="12_cni2d"]
+[ext_resource type="PackedScene" uid="uid://bquqkwemvwrwn" path="res://scenes/obstacles/tractor.tscn" id="13_86m3i"]
+[ext_resource type="PackedScene" uid="uid://buqsf4rlnxoki" path="res://scenes/obstacles/pitch_fork.tscn" id="14_78a33"]
+[ext_resource type="PackedScene" uid="uid://u6us21n31s27" path="res://scenes/obstacles/cart.tscn" id="15_1vbon"]
+[ext_resource type="PackedScene" uid="uid://rdn4mtnial6h" path="res://scenes/obstacles/open_barn.tscn" id="15_e2upg"]
+[ext_resource type="PackedScene" uid="uid://ddjah0vaj7pt4" path="res://scenes/obstacles/level_end.tscn" id="16_631gu"]
+[ext_resource type="PackedScene" uid="uid://0fh51solgy8j" path="res://scenes/UI/leader_board_ui.tscn" id="17_5ggqp"]
+[ext_resource type="PackedScene" uid="uid://wu637t43al6a" path="res://scenes/UI/ui.tscn" id="18_6m81q"]
+
+[sub_resource type="Curve" id="Curve_rm57i"]
+_data = [Vector2(0.0532319, 0), 0.0, 0.0, 0, 0, Vector2(0.684411, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jxwoh"]
+curve = SubResource("Curve_rm57i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mh2hh"]
+particle_flag_disable_z = true
+angle_min = 5.0
+angle_max = 30.0
+angular_velocity_min = 10.0
+angular_velocity_max = 20.0
+orbit_velocity_max = 0.01
+gravity = Vector3(0, -100, 0)
+scale_min = 0.5
+alpha_curve = SubResource("CurveTexture_jxwoh")
+turbulence_noise_strength = 0.1
+turbulence_influence_min = 0.01
+
+[node name="TemplateLevel" type="Node2D"]
+script = ExtResource("1_k7wv1")
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="background"]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="background/ParallaxBackground"]
+position = Vector2(-1149, 756)
+scale = Vector2(4.7549, 3.47059)
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="background/ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(222.297, -246.356)
+scale = Vector2(0.161675, 0.244382)
+texture = ExtResource("2_b8nx2")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="background/ParallaxBackground"]
+position = Vector2(-1149, 756)
+scale = Vector2(4.7549, 3.47059)
+motion_scale = Vector2(0.005, 0.005)
+
+[node name="Sprite2D2" type="Sprite2D" parent="background/ParallaxBackground/ParallaxLayer3"]
+modulate = Color(0.964706, 0.972549, 0.898039, 1)
+texture_repeat = 2
+position = Vector2(476.771, -276.61)
+scale = Vector2(0.278792, 0.943862)
+texture = ExtResource("3_i8i51")
+centered = false
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="background/ParallaxBackground"]
+position = Vector2(-1149, 756)
+scale = Vector2(4.7549, 3.47059)
+motion_scale = Vector2(0.005, 0.005)
+
+[node name="Sprite2D" type="Sprite2D" parent="background/ParallaxBackground/ParallaxLayer2"]
+texture_repeat = 2
+position = Vector2(260.994, -158.475)
+scale = Vector2(0.287395, 0.608754)
+texture = ExtResource("3_i8i51")
+centered = false
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="background/ParallaxBackground"]
+motion_scale = Vector2(0.01, 0.01)
+
+[node name="Sprite2D3" type="Sprite2D" parent="background/ParallaxBackground/ParallaxLayer5"]
+position = Vector2(791, 40)
+scale = Vector2(0.255, 0.255)
+texture = ExtResource("6_gs3lj")
+
+[node name="Sprite2D4" type="Sprite2D" parent="background/ParallaxBackground/ParallaxLayer5"]
+position = Vector2(1680, 253)
+scale = Vector2(0.255, 0.255)
+texture = ExtResource("6_gs3lj")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="background/ParallaxBackground"]
+motion_scale = Vector2(0.015, 0.015)
+
+[node name="Sprite2D" type="Sprite2D" parent="background/ParallaxBackground/ParallaxLayer6"]
+position = Vector2(1093, 131)
+scale = Vector2(0.255, 0.255)
+texture = ExtResource("4_ejxpn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="background/ParallaxBackground/ParallaxLayer6"]
+position = Vector2(2067, -7)
+scale = Vector2(0.255, 0.255)
+texture = ExtResource("4_ejxpn")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="background/ParallaxBackground"]
+motion_scale = Vector2(0.02, 0.02)
+
+[node name="Sprite2D2" type="Sprite2D" parent="background/ParallaxBackground/ParallaxLayer4"]
+position = Vector2(315, 193)
+scale = Vector2(0.212787, 0.219769)
+texture = ExtResource("5_fh0iu")
+
+[node name="Sprite2D3" type="Sprite2D" parent="background/ParallaxBackground/ParallaxLayer4"]
+position = Vector2(2421, 145)
+scale = Vector2(0.255, 0.255)
+texture = ExtResource("5_fh0iu")
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground"]
+texture_repeat = 2
+texture = ExtResource("3_wd78d")
+texture_scale = Vector2(0.2, 0.2)
+polygon = PackedVector2Array(-11443, 1161, -2163, 1103, 1209, 1114, 2395, 1239, 3508, 1428, 4487, 1760, 14507, 6980, 15059, 7057, 15601, 6991, 16195, 7500, 18400, 7284, 29517.1, 7230.59, 48232, 16053, 71816, 16580, 72151, 12825, 76344, 12965, 76372, 14795, 81714, 14754, 81831.9, 12988.2, 87487, 13130, 88400, 6356, 106403, 11040, 108077, 11474, 108815, 11508, 109485, 11436, 110035, 11288, 110612, 11059, 110283, 14071, 155573, 14456, 157404, 35136, -11544, 34050)
+script = ExtResource("3_xsbxc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground/Polygon2D"]
+collision_layer = 2
+collision_mask = 7
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Fence" parent="Obstacles" instance=ExtResource("2_vm6tp")]
+position = Vector2(-628, 861)
+scale = Vector2(0.8, 0.8)
+
+[node name="Barn2" parent="Obstacles" instance=ExtResource("3_cnvhg")]
+position = Vector2(-3882, -621)
+scale = Vector2(2, 2)
+
+[node name="wind" parent="Obstacles" instance=ExtResource("11_wr7wq")]
+position = Vector2(71125, 17284)
+scale = Vector2(10.97, 8.19)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Obstacles/wind"]
+position = Vector2(3.6456, -121.734)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_mh2hh")
+texture = ExtResource("12_8asws")
+lifetime = 8.0
+preprocess = 1.0
+speed_scale = 2.0
+randomness = 0.2
+visibility_rect = Rect2(-204.24, -576.96, 400, 800)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Obstacles/wind"]
+position = Vector2(592.342, -315.629)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_mh2hh")
+texture = ExtResource("12_8asws")
+lifetime = 8.0
+preprocess = 1.0
+speed_scale = 2.0
+randomness = 0.2
+visibility_rect = Rect2(-204.24, -576.96, 400, 800)
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Obstacles/wind"]
+position = Vector2(724.338, -315.629)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_mh2hh")
+texture = ExtResource("12_8asws")
+lifetime = 8.0
+preprocess = 1.0
+speed_scale = 2.0
+randomness = 0.2
+visibility_rect = Rect2(-204.24, -576.96, 400, 800)
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="Obstacles/wind"]
+position = Vector2(856.335, -315.629)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_mh2hh")
+texture = ExtResource("12_8asws")
+lifetime = 8.0
+preprocess = 1.0
+speed_scale = 2.0
+randomness = 0.2
+visibility_rect = Rect2(-204.24, -576.96, 400, 800)
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="Obstacles/wind"]
+position = Vector2(1427.62, -528.45)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_mh2hh")
+texture = ExtResource("12_8asws")
+lifetime = 8.0
+preprocess = 1.0
+speed_scale = 2.0
+randomness = 0.2
+visibility_rect = Rect2(-204.24, -576.96, 400, 800)
+
+[node name="wind4" parent="Obstacles" instance=ExtResource("11_wr7wq")]
+position = Vector2(86743, 13639)
+scale = Vector2(10.97, 7.605)
+
+[node name="wind2" parent="Obstacles" instance=ExtResource("11_wr7wq")]
+position = Vector2(79152, 15482)
+scale = Vector2(33.22, 6.74)
+
+[node name="hedge" parent="Obstacles" instance=ExtResource("12_cni2d")]
+position = Vector2(18680, 6728)
+
+[node name="hedge2" parent="Obstacles" instance=ExtResource("12_cni2d")]
+position = Vector2(24599, 6830)
+scale = Vector2(0.8, 0.8)
+
+[node name="hedge3" parent="Obstacles" instance=ExtResource("12_cni2d")]
+z_index = -1
+position = Vector2(35744, 9718)
+
+[node name="hedge4" parent="Obstacles" instance=ExtResource("12_cni2d")]
+z_index = -1
+position = Vector2(41469, 12460)
+
+[node name="Tractor" parent="Obstacles" instance=ExtResource("13_86m3i")]
+position = Vector2(58733, 15428)
+scale = Vector2(1.17737, 0.990262)
+
+[node name="hedge5" parent="Obstacles" instance=ExtResource("12_cni2d")]
+position = Vector2(57038, 15711)
+scale = Vector2(1.17737, 0.990262)
+
+[node name="SlowTrap5" parent="Obstacles" instance=ExtResource("4_006i7")]
+position = Vector2(117726, 15018)
+scale = Vector2(7, 3.07)
+
+[node name="PitchFork" parent="Obstacles" instance=ExtResource("14_78a33")]
+position = Vector2(56092, 15772)
+rotation = 0.785608
+scale = Vector2(1, 1.4243)
+
+[node name="OpenBarn" parent="Obstacles" instance=ExtResource("15_e2upg")]
+z_index = 2
+position = Vector2(142495, 12973)
+rotation = 0.0138405
+
+[node name="Cart" parent="Obstacles" instance=ExtResource("15_1vbon")]
+position = Vector2(16630, 6977)
+rotation = -0.217344
+
+[node name="Player" parent="." instance=ExtResource("2_6h0pe")]
+position = Vector2(140122, 13913)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(141622, 14213)
+zoom = Vector2(0.2, 0.2)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("5_dari2")
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(141622, 14213)
+script = ExtResource("4_fne4b")
+priority_override = false
+priority = 0
+zoom = Vector2(0.2, 0.2)
+follow_mode = 2
+follow_target = NodePath("../Player")
+follow_parameters/target_offset = Vector2(1500, 300)
+follow_parameters/damping = false
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = false
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="PhantomCamera2D2" type="Node2D" parent="."]
+position = Vector2(142622, 14413)
+script = ExtResource("4_fne4b")
+priority_override = false
+priority = 0
+zoom = Vector2(0.15, 0.15)
+follow_mode = 2
+follow_target = NodePath("../Player")
+follow_parameters/target_offset = Vector2(2500, 500)
+follow_parameters/damping = false
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = false
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="LevelEnd" parent="." instance=ExtResource("16_631gu")]
+position = Vector2(149057, 5653)
+scale = Vector2(54.91, 73.89)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-3378, -695)
+scale = Vector2(10, 10)
+
+[node name="LeaderBoardUI" parent="Node2D" instance=ExtResource("17_5ggqp")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" parent="." instance=ExtResource("18_6m81q")]
+
+[connection signal="body_entered" from="Obstacles/wind" to="." method="_on_wind_body_entered"]
+[connection signal="body_exited" from="Obstacles/wind" to="." method="_on_wind_body_exited"]
+[connection signal="body_entered" from="Obstacles/wind4" to="." method="_on_wind_body_entered"]
+[connection signal="body_exited" from="Obstacles/wind4" to="." method="_on_wind_body_exited"]
+[connection signal="body_entered" from="Obstacles/wind2" to="." method="_on_wind_body_entered"]
+[connection signal="body_exited" from="Obstacles/wind2" to="." method="_on_wind_body_exited"]
+[connection signal="SlowTrapEntered" from="Obstacles/SlowTrap5" to="." method="_on_slow_trap_slow_trap_entered"]
+[connection signal="body_entered" from="LevelEnd" to="." method="_on_level_end_body_entered"]

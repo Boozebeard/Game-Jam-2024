@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://8gxrw4g6yw8o"]
+
+[ext_resource type="PackedScene" uid="uid://bq6f3prvnbiky" path="res://scenes/obstacles/obstacle.tscn" id="1_jxif7"]
+[ext_resource type="Texture2D" uid="uid://dhyi4h7yfp25x" path="res://assets/Art for Roller Derby/fence.png" id="2_3p32l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5cth"]
+size = Vector2(384, 757)
+
+[node name="Fence" instance=ExtResource("1_jxif7")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(42, 3)
+texture = ExtResource("2_3p32l")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -37.5)
+shape = SubResource("RectangleShape2D_k5cth")

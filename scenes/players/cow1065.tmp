@@ -1,0 +1,106 @@
+[gd_scene load_steps=14 format=3 uid="uid://d1h7bfg2nhldj"]
+
+[ext_resource type="Script" path="res://scenes/players/cow.gd" id="1_cpit6"]
+[ext_resource type="Texture2D" uid="uid://c205mfi3on8dr" path="res://assets/Art for Roller Derby/body2.png" id="2_v86ym"]
+[ext_resource type="Texture2D" uid="uid://bygfctk3hwqnk" path="res://assets/Art for Roller Derby/head1.png" id="3_2cu0x"]
+[ext_resource type="Texture2D" uid="uid://bvcw76ht0o4xp" path="res://assets/Art for Roller Derby/head2.png" id="4_qhtn6"]
+[ext_resource type="Texture2D" uid="uid://dabs1rbcttfq3" path="res://assets/Art for Roller Derby/head3.png" id="5_b6ord"]
+[ext_resource type="Texture2D" uid="uid://clp0rif1vetel" path="res://assets/Art for Roller Derby/cloud4.png" id="6_njdi5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hubn6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oe3q3"]
+radius = 207.697
+
+[sub_resource type="Gradient" id="Gradient_xmrpv"]
+offsets = PackedFloat32Array(0, 0.829787, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ikanu"]
+gradient = SubResource("Gradient_xmrpv")
+
+[sub_resource type="Curve" id="Curve_s7h3l"]
+min_value = 0.1
+_data = [Vector2(0, 0.1), 0.0, -0.0385486, 0, 0, Vector2(0.452471, 0.1), 0.332557, 0.332557, 0, 0, Vector2(0.992395, 0.53937), 0.0860265, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wys6l"]
+curve = SubResource("Curve_s7h3l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfvun"]
+particle_flag_disable_z = true
+angle_max = 60.0
+spread = 10.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 3500.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_wys6l")
+color = Color(1, 0.968627, 0.890196, 1)
+color_ramp = SubResource("GradientTexture1D_ikanu")
+
+[node name="player" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_hubn6")
+gravity_scale = 5.0
+script = ExtResource("1_cpit6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oe3q3")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(21, -6)
+
+[node name="body" type="Sprite2D" parent="Node2D"]
+z_index = 1
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("2_v86ym")
+
+[node name="heads" type="Node2D" parent="Node2D"]
+top_level = true
+position = Vector2(-10, -1)
+
+[node name="head1" type="Sprite2D" parent="Node2D/heads"]
+visible = false
+z_index = 1
+position = Vector2(-13.41, 3.875)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_2cu0x")
+
+[node name="head2" type="Sprite2D" parent="Node2D/heads"]
+visible = false
+z_index = 1
+position = Vector2(-10, -1)
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("4_qhtn6")
+
+[node name="head3" type="Sprite2D" parent="Node2D/heads"]
+visible = false
+z_index = 1
+position = Vector2(-10, -1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_b6ord")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Node2D"]
+position = Vector2(-31, 5)
+scale = Vector2(0.245, 0.245)
+remote_path = NodePath("../heads")
+update_rotation = false
+update_scale = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../GPUParticles2D")
+update_rotation = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.0588235)
+top_level = true
+emitting = false
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_wfvun")
+texture = ExtResource("6_njdi5")
+lifetime = 0.2
+speed_scale = 0.4
+trail_lifetime = 0.1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
