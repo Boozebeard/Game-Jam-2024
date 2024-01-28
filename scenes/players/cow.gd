@@ -39,7 +39,7 @@ func _process(delta):
 
 	#print("size ",$Node2D.scale,", gravity ",gravity_scale,", bounce ",physics_material_override.bounce)
 	
-	if Input.is_action_pressed("smallen") and Globals.game_active:
+	if Input.is_action_pressed("smallen") and Globals.game_active and !Input.is_action_pressed("biggen"):
 		
 		if $Node2D.scale > Vector2(min_size,min_size):
 			$GPUParticles2D.emitting = true
